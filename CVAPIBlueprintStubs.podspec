@@ -7,18 +7,14 @@
 Pod::Spec.new do |s|
   s.name         = "CVAPIBlueprintStubs"
   s.version      = "0.1.0"
-  s.summary      = "A short description of CVAPIBlueprintStubs."
+  s.summary      = "Automatically creates stubs from API Blueprint AST files."
   s.description  = <<-DESC
-                    An optional longer description of CVAPIBlueprintStubs
-
-                    * Markdown format.
-                    * Don't worry about the indent, we strip it!
+                    Automatically creates stubs from API Blueprint AST files. You can use this library with OHHTTPStubs library to fake network API connections.
                    DESC
-  s.homepage     = "http://EXAMPLE/NAME"
-  s.screenshots  = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
+  s.homepage     = "https://github.com/keremk/CVAPIBlueprintStub"
   s.license      = 'MIT'
-  s.author       = { "Kerem Karatal" => "kkaratal@yahoo.com" }
-  s.source       = { :git => "http://EXAMPLE/NAME.git", :tag => s.version.to_s }
+  s.author       = "Kerem Karatal"
+  s.source       = { :git => "https://github.com/keremk/CVAPIBlueprintStub.git", :tag => s.version.to_s }
 
   s.platform     = :ios, '7.0'
   s.ios.deployment_target = '7.0'
@@ -30,7 +26,7 @@ Pod::Spec.new do |s|
 
   s.ios.exclude_files = 'Classes/osx'
   s.osx.exclude_files = 'Classes/ios'
-  # s.public_header_files = 'Classes/**/*.h'
-  # s.frameworks = 'SomeFramework', 'AnotherFramework'
+  s.public_header_files = 'Classes/**/*.h'
+  s.frameworks = 'Foundation', 'SystemConfiguration'
   # s.dependency 'JSONKit', '~> 1.4'
 end
