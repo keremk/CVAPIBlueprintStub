@@ -1,0 +1,7 @@
+pod "CVAPIBlueprintStubs", :path => "../CVAPIBlueprintStubs.podspec"
+
+target "Demo" do
+end
+
+target "DemoTests" do
+end
