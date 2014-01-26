@@ -18,7 +18,7 @@ it simply add the following line to your Podfile:
 
 ## Author
 
-Kerem Karatal, kkaratal@yahoo.com
+Kerem Karatal
 
 ## License
 
