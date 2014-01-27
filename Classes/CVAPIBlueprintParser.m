@@ -33,10 +33,10 @@ static NSString * const kExamples = @"examples";
 static NSString * const kRequests = @"requests";
 static NSString * const kResponses = @"responses";
 
-- (NSDictionary *) parse {
-  NSMutableDictionary *stubbedRequests = [NSMutableDictionary dictionary];
-  
-  return stubbedRequests;
+- (CVPathNode *) parse {
+  CVPathNode *rootNode = [[CVPathNode alloc] init];
+
+  return rootNode;
 }
 
 - (void) processAST:(NSDictionary *) blueprintAST {

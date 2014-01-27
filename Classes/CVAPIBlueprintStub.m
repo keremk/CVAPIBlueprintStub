@@ -8,10 +8,11 @@
 
 #import "CVAPIBlueprintStub.h"
 #import "CVAPIBlueprintParser.h"
+#import "CVPathNode.h"
 
 @interface CVAPIBlueprintStub()
 @property(nonatomic, strong) CVAPIBlueprintParser *blueprintParser;
-@property(nonatomic, strong) NSDictionary *stubbedRequests;
+@property(nonatomic, strong) CVPathNode *rootNode;
 
 - (id)initWithParser:(CVAPIBlueprintParser *) blueprintParser;
 @end
@@ -35,17 +36,15 @@
   self = [super init];
   if (self) {
     _blueprintParser = blueprintParser;
-    _stubbedRequests = nil;
+    _rootNode = nil;
   }
   return self;
 }
 
 - (BOOL) isRequestStubbed:(NSURLRequest *)request {
-  [self ensureParsed];
-  CVRequest *cvRequest = [self.blueprintParser createRequestFromURLRequest:request];
-  CVResponse *response = [self.stubbedRequests objectForKey:cvRequest];
+  CVResponse *response = [self responseForRequest:request];
   
-  if (response == nil) {
+  if (nil == response) {
     return NO;
   }
   else {
@@ -53,17 +52,33 @@
   }
 }
 
+
 - (CVResponse *) responseForRequest:(NSURLRequest *)request {
-  CVRequest *cvRequest = [self.blueprintParser createRequestFromURLRequest:request];
-  CVResponse *response = [self.stubbedRequests objectForKey:cvRequest];
+  [self ensureParsed];
   
-  return response;
+  __block CVResponse *foundResponse = nil;
+  
+  CVPathNode *startNode = self.rootNode;
+  NSArray *pathComponents = [request.URL pathComponents];
+  [pathComponents enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+    NSString *nodeName = (NSString *) obj;
+    CVPathNode *newNode = [startNode.subNodes objectForKey:nodeName];
+    if (nil == newNode && nil == startNode.paramNode) {
+      *stop = YES;
+    } else {
+      if (nil == newNode) {
+        newNode = startNode.paramNode;
+      }
+      foundResponse = newNode.response;      
+    }
+  }];
+
+  return foundResponse;
 }
 
-
 - (void) ensureParsed {
-  if (self.stubbedRequests == nil) {
-    self.stubbedRequests = [self.blueprintParser parse];
+  if (nil == self.rootNode) {
+    self.rootNode = [self.blueprintParser parse];
   }
 }
 

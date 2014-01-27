@@ -8,11 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import "CVRequest.h"
+#import "CVPathNode.h"
 
 @interface CVAPIBlueprintParser : NSObject
 
 - (id) initWithAST:(NSDictionary *) blueprintAST;
 - (CVRequest *) createRequestFromURLRequest:(NSURLRequest *) request;
-- (NSDictionary *) parse;
+- (CVPathNode *) parse;
 
 @end

@@ -42,5 +42,11 @@
       <FileRef
          location = "group:CVAPIBlueprintParser.m">
       </FileRef>
+      <FileRef
+         location = "group:CVPathNode.h">
+      </FileRef>
+      <FileRef
+         location = "group:CVPathNode.m">
+      </FileRef>
    </Group>
 </Workspace>
