@@ -1,0 +1,107 @@
+{
+  "_version": "1.0",
+  "metadata": {
+    "FORMAT": {
+      "value": "1A"
+    }
+  },
+  "name": "Responses API",
+  "description": "In this API example we will discuss what information a response can bear and how to define multiple responses. Technically a response is represented by a payload that is sent back in response to a request.\n\n## API Blueprint\n+ [Previous: Grouping Resources](4.%20Grouping%20Resources.md)\n+ [This: Raw API Blueprint](https://raw.github.com/apiaryio/api-blueprint/master/examples/5.%20Responses.md)\n+ [Next: Requests](6.%20Requests.md)\n\n",
+  "resourceGroups": [
+    {
+      "name": "Messages",
+      "description": "Group of all messages-related resources.\n\n",
+      "resources": [
+        {
+          "name": "My Message",
+          "description": "",
+          "uriTemplate": "/message",
+          "model": {},
+          "parameters": {},
+          "headers": {},
+          "actions": [
+            {
+              "name": "Retrieve a Message",
+              "description": "This action has **two** responses defined: One returing a plain text and the other a JSON representation of our resource. Both has the same HTTP status code. Also both responses bear additional information in the form of a custom HTTP header. Note that both responses have set the `Content-Type` HTTP header just by specifying `(text/plain)` or `(application/json)` in their respective signatures. \n\n",
+              "method": "GET",
+              "parameters": {},
+              "headers": {},
+              "examples": [
+                {
+                  "name": "",
+                  "description": "",
+                  "requests": [],
+                  "responses": [
+                    {
+                      "name": "200",
+                      "description": "",
+                      "headers": {
+                        "Content-Type": {
+                          "value": "text/plain"
+                        },
+                        "X-My-Message-Header": {
+                          "value": "42"
+                        }
+                      },
+                      "body": "Hello World!\n",
+                      "schema": ""
+                    },
+                    {
+                      "name": "200",
+                      "description": "",
+                      "headers": {
+                        "Content-Type": {
+                          "value": "application/json"
+                        },
+                        "X-My-Message-Header": {
+                          "value": "42"
+                        }
+                      },
+                      "body": "{ \"message\": \"Hello World!\" }\n",
+                      "schema": ""
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Update a Message",
+              "description": "",
+              "method": "PUT",
+              "parameters": {},
+              "headers": {},
+              "examples": [
+                {
+                  "name": "",
+                  "description": "",
+                  "requests": [
+                    {
+                      "name": "",
+                      "description": "",
+                      "headers": {
+                        "Content-Type": {
+                          "value": "text/plain"
+                        }
+                      },
+                      "body": "All your base are belong to us.\n",
+                      "schema": ""
+                    }
+                  ],
+                  "responses": [
+                    {
+                      "name": "204",
+                      "description": "",
+                      "headers": {},
+                      "body": "",
+                      "schema": ""
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
