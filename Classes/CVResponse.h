@@ -10,7 +10,8 @@
 
 @interface CVResponse : NSObject
 
-- (NSData *) body;
-- (NSInteger *) statusCode;
-- (NSDictionary *) headers;
+@property(nonatomic, strong) NSData *body;
+@property(nonatomic) NSInteger statusCode;
+@property(nonatomic, strong) NSDictionary *headers;
+
 @end

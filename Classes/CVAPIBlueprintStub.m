@@ -7,11 +7,13 @@
 //
 
 #import "CVAPIBlueprintStub.h"
+#import "CVAPIBlueprintParser.h"
 
 @interface CVAPIBlueprintStub()
-@property(nonatomic, strong) NSDictionary *blueprintAST;
+@property(nonatomic, strong) CVAPIBlueprintParser *blueprintParser;
+@property(nonatomic, strong) NSDictionary *stubbedRequests;
 
-- (id)initWithAST:(NSDictionary *) blueprintAST;
+- (id)initWithParser:(CVAPIBlueprintParser *) blueprintParser;
 @end
 
 @implementation CVAPIBlueprintStub
@@ -24,27 +26,45 @@
                                                                options:kNilOptions
                                                                  error:&error];
   
-  CVAPIBlueprintStub *stub = [[CVAPIBlueprintStub alloc] initWithAST:blueprintAST];
+  CVAPIBlueprintParser *parser = [[CVAPIBlueprintParser alloc] initWithAST:blueprintAST];
+  CVAPIBlueprintStub *stub = [[CVAPIBlueprintStub alloc] initWithParser:parser];
   return stub;
 }
 
-- (id)initWithAST:(NSDictionary *) blueprintAST {
+- (id)initWithParser:(CVAPIBlueprintParser *) blueprintParser {
   self = [super init];
   if (self) {
-    _blueprintAST = blueprintAST;
+    _blueprintParser = blueprintParser;
+    _stubbedRequests = nil;
   }
   return self;
 }
 
 - (BOOL) isRequestStubbed:(NSURLRequest *)request {
-  return YES;
+  [self ensureParsed];
+  CVRequest *cvRequest = [self.blueprintParser createRequestFromURLRequest:request];
+  CVResponse *response = [self.stubbedRequests objectForKey:cvRequest];
+  
+  if (response == nil) {
+    return NO;
+  }
+  else {
+    return YES;
+  }
 }
 
 - (CVResponse *) responseForRequest:(NSURLRequest *)request {
-  CVResponse *response = [[CVResponse alloc] init];
+  CVRequest *cvRequest = [self.blueprintParser createRequestFromURLRequest:request];
+  CVResponse *response = [self.stubbedRequests objectForKey:cvRequest];
   
   return response;
 }
 
+
+- (void) ensureParsed {
+  if (self.stubbedRequests == nil) {
+    self.stubbedRequests = [self.blueprintParser parse];
+  }
+}
 
 @end

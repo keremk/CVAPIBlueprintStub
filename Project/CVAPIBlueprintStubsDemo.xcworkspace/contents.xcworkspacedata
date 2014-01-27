@@ -30,5 +30,17 @@
       <FileRef
          location = "group:CVResponse.m">
       </FileRef>
+      <FileRef
+         location = "group:CVRequest.h">
+      </FileRef>
+      <FileRef
+         location = "group:CVRequest.m">
+      </FileRef>
+      <FileRef
+         location = "group:CVAPIBlueprintParser.h">
+      </FileRef>
+      <FileRef
+         location = "group:CVAPIBlueprintParser.m">
+      </FileRef>
    </Group>
 </Workspace>

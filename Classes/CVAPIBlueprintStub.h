@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "CVResponse.h"
+#import "CVRequest.h"
 
 @interface CVAPIBlueprintStub : NSObject
 
