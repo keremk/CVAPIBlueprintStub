@@ -8,12 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import "CVResponse.h"
-#import "CVRequest.h"
 
 @interface CVAPIBlueprintStub : NSObject
 
 + (CVAPIBlueprintStub *) stubFromBlueprintAST:(NSString *) blueprintASTFilename;
-
 - (BOOL) isRequestStubbed:(NSURLRequest *)request;
 - (CVResponse *) responseForRequest:(NSURLRequest *) request;
 @end

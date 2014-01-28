@@ -54,32 +54,9 @@
 
 
 - (CVResponse *) responseForRequest:(NSURLRequest *)request {
-  [self ensureParsed];
+  CVResponse *foundResponse = [self.blueprintParser responseForRequest:request];
   
-  __block CVResponse *foundResponse = nil;
-  
-  CVPathNode *startNode = self.rootNode;
-  NSArray *pathComponents = [request.URL pathComponents];
-  [pathComponents enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-    NSString *nodeName = (NSString *) obj;
-    CVPathNode *newNode = [startNode.subNodes objectForKey:nodeName];
-    if (nil == newNode && nil == startNode.paramNode) {
-      *stop = YES;
-    } else {
-      if (nil == newNode) {
-        newNode = startNode.paramNode;
-      }
-      foundResponse = newNode.response;      
-    }
-  }];
-
   return foundResponse;
-}
-
-- (void) ensureParsed {
-  if (nil == self.rootNode) {
-    self.rootNode = [self.blueprintParser parse];
-  }
 }
 
 @end

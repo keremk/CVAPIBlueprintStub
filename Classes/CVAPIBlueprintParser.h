@@ -13,7 +13,6 @@
 @interface CVAPIBlueprintParser : NSObject
 
 - (id) initWithAST:(NSDictionary *) blueprintAST;
-- (CVRequest *) createRequestFromURLRequest:(NSURLRequest *) request;
-- (CVPathNode *) parse;
+- (CVResponse *) responseForRequest:(NSURLRequest *)request;
 
 @end
