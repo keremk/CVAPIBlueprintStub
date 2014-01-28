@@ -34,10 +34,13 @@ static NSString * const kParameters = @"parameters";
 static NSString * const kMethod = @"method";
 static NSString * const kHeaders = @"headers";
 static NSString * const kExamples = @"examples";
+static NSString * const kExample = @"example";
+static NSString * const kValue = @"value";
 static NSString * const kRequests = @"requests";
 static NSString * const kResponses = @"responses";
 static NSString * const kActions = @"actions";
 static NSString * const kBody = @"body";
+static NSString * const kName = @"name";
 
 - (void) processAST {
   NSArray *resourceGroups = [self.blueprintAST objectForKey:kResourceGroups];
@@ -53,8 +56,12 @@ static NSString * const kBody = @"body";
       NSMutableArray *potentialParamsStack = [NSMutableArray array];
       NSMutableArray *potentialHeaderStack = [NSMutableArray array];
       
-      [potentialParamsStack addObject:[resource objectForKey:kParameters]];
-      [potentialHeaderStack addObject:[resource objectForKey:kHeaders]];
+      [potentialParamsStack addObject:[self extractRelevantValueFromKey:kParameters
+                                                        inASTDictionary:resource
+                                                             fromRawKey:kExample]];
+      [potentialHeaderStack addObject:[self extractRelevantValueFromKey:kHeaders
+                                                        inASTDictionary:resource
+                                                             fromRawKey:kValue]];
       
       CVPathNode *foundNode = [self findOrCreatePathNodeFromPathComponents:pathComponents];
       
@@ -63,9 +70,13 @@ static NSString * const kBody = @"body";
         NSDictionary *action = (NSDictionary *) obj;
         NSString *potentialMethod = [action objectForKey:kMethod];
 
-        [potentialParamsStack addObject:[action objectForKey:kParameters]];
-        [potentialHeaderStack addObject:[action objectForKey:kHeaders]];
-        
+        [potentialParamsStack addObject:[self extractRelevantValueFromKey:kParameters
+                                                          inASTDictionary:action
+                                                               fromRawKey:kExample]];
+        [potentialHeaderStack addObject:[self extractRelevantValueFromKey:kHeaders
+                                                          inASTDictionary:action
+                                                               fromRawKey:kValue]];
+
         NSArray *examples = [action objectForKey:kExamples];
         [examples enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
           NSDictionary *example = (NSDictionary *) obj;
@@ -73,9 +84,11 @@ static NSString * const kBody = @"body";
           NSArray *responses = [example objectForKey:kResponses];
           [requests enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
             NSDictionary *request = (NSDictionary *) obj;
+            [potentialHeaderStack addObject:[self extractRelevantValueFromKey:kHeaders
+                                                              inASTDictionary:request
+                                                                   fromRawKey:kValue]];
+
             CVRequest *cvRequest = [[CVRequest alloc] init];
-            [potentialHeaderStack addObject:[request objectForKey:kHeaders]];
-            
             cvRequest.method = potentialMethod;
             cvRequest.headers = [self finalValueFromStack:potentialHeaderStack];
             cvRequest.params = [self finalValueFromStack:potentialParamsStack];
@@ -83,7 +96,8 @@ static NSString * const kBody = @"body";
             NSDictionary *response = [responses objectAtIndex:idx];
             CVResponse *cvResponse = [[CVResponse alloc] init];
             cvResponse.body = [response objectForKey:kBody];
-            
+            cvResponse.statusCode = [[response objectForKey:kName] intValue];
+            cvResponse.headers = [self extractRelevantValueFromKey:kHeaders inASTDictionary:response fromRawKey:kValue];
             
             [foundNode addResponse:cvResponse forRequest:cvRequest];
           }]; // requests
@@ -97,6 +111,18 @@ static NSString * const kBody = @"body";
       [potentialHeaderStack removeLastObject];
     }]; // resources
   }]; // resourceGroups
+}
+
+- (NSDictionary *) extractRelevantValueFromKey:(NSString *)sourceKey
+                               inASTDictionary:(NSDictionary *) dict
+                                    fromRawKey:(NSString *) rawKey {
+  NSDictionary *rawData = [dict objectForKey:sourceKey];
+  NSMutableDictionary *parsedData = [NSMutableDictionary dictionary];
+  [rawData enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+    NSString *relevantValue = [(NSDictionary *) obj objectForKey:rawKey];
+    [parsedData setObject:relevantValue forKey:key];
+  }];
+  return parsedData;
 }
 
 - (id) finalValueFromStack:(NSMutableArray *) stack {
