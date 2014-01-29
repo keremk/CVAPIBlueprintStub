@@ -25,11 +25,20 @@
     [super tearDown];
 }
 
-- (void)testForQueryParamNode {
+- (void) testPathStringForNoQueryParams {
+  NSString *pathString = @"message";
+  
+  NSString *newPathString = [CVUtils stripQueryParamIfExistsFromPathString:pathString];
+  XCTAssertEqual(newPathString, @"message");
+}
+
+- (void) testPathStringForQueryParams {
   NSString *pathString = @"messages{?limit}";
 
   NSString *newPathString = [CVUtils stripQueryParamIfExistsFromPathString:pathString];
   XCTAssertEqual(newPathString, @"messages");
 }
+
+
 
 @end
