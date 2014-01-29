@@ -147,7 +147,7 @@
         {
           "name": "All My Messages",
           "description": "A resource representing all of my messages in the system.\n\nWe have added the query URI template parameter - `limit`. This parameter is used for limiting the number of results returned by some actions on this resource. It does not affect every possible action of this resource therefore we will discuss it only at the particular action level below.\n \n",
-          "uriTemplate": "/messages{?limit}",
+          "uriTemplate": "/messages",
           "model": {},
           "parameters": {},
           "headers": {},

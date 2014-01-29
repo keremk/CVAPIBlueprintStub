@@ -12,7 +12,10 @@
 
 @interface CVAPIBlueprintParser : NSObject
 
+@property(nonatomic, strong) CVPathNode *rootNode;
+
 - (id) initWithAST:(NSDictionary *) blueprintAST;
 - (CVResponse *) responseForRequest:(NSURLRequest *)request;
-
+- (void) ensureParsed;
+- (void) processAST;
 @end

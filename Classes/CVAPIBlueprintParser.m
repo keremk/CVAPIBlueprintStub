@@ -7,10 +7,10 @@
 //
 
 #import "CVAPIBlueprintParser.h"
+#import "CVUtils.h"
 
 @interface CVAPIBlueprintParser()
 @property(nonatomic, strong) NSDictionary *blueprintAST;
-@property(nonatomic, strong) CVPathNode *rootNode;
 
 @end
 
@@ -21,8 +21,7 @@
   self = [super init];
   if (self) {
     _blueprintAST = blueprintAST;
-    _rootNode = [[CVPathNode alloc] init];
-    _rootNode.pathString = @"/";
+    _rootNode = nil;
   }
   return self;
 }
@@ -43,6 +42,9 @@ static NSString * const kBody = @"body";
 static NSString * const kName = @"name";
 
 - (void) processAST {
+  _rootNode = [[CVPathNode alloc] init];
+  _rootNode.pathString = @"/";
+
   NSArray *resourceGroups = [self.blueprintAST objectForKey:kResourceGroups];
   
   [resourceGroups enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
@@ -82,18 +84,21 @@ static NSString * const kName = @"name";
           NSDictionary *example = (NSDictionary *) obj;
           NSArray *requests = [example objectForKey:kRequests];
           NSArray *responses = [example objectForKey:kResponses];
-          [requests enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-            NSDictionary *request = (NSDictionary *) obj;
-            [potentialHeaderStack addObject:[self extractRelevantValueFromKey:kHeaders
-                                                              inASTDictionary:request
-                                                                   fromRawKey:kValue]];
+          [responses enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            NSDictionary *response = (NSDictionary *) obj;
+            if (idx < [requests count]) {
+              NSDictionary *request = [requests objectAtIndex:idx];
+              [potentialHeaderStack addObject:[self extractRelevantValueFromKey:kHeaders
+                                                                inASTDictionary:request
+                                                                     fromRawKey:kValue]];
+            }
 
             CVRequest *cvRequest = [[CVRequest alloc] init];
             cvRequest.method = potentialMethod;
             cvRequest.headers = [self finalValueFromStack:potentialHeaderStack];
             cvRequest.params = [self finalValueFromStack:potentialParamsStack];
             
-            NSDictionary *response = [responses objectAtIndex:idx];
+            
             CVResponse *cvResponse = [[CVResponse alloc] init];
             cvResponse.body = [response objectForKey:kBody];
             cvResponse.statusCode = [[response objectForKey:kName] intValue];
@@ -155,41 +160,35 @@ static NSString * const kName = @"name";
   
   [pathComponents enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
     NSString *pathString = (NSString *) obj;
-    CVPathNode *newNode = [startNode.subNodes objectForKey:pathString];
+    pathString = [CVUtils stripQueryParamIfExistsFromPathString:pathString];
+    
+    CVPathNode *newNode = [self findNodeFromPathString:pathString startingAt:startNode];
     if (nil == newNode && nil == startNode.paramNode) {
       newNode = [[CVPathNode alloc] init];
       newNode.pathString = pathString;
-      if ([self isParamNodeFromPathString:pathString]) {
+      if ([CVUtils isParamNodeFromPathString:pathString]) {
         startNode.paramNode = newNode;
       } else {
         [startNode addNode:newNode forPath:pathString];
       }
-      startNode = newNode;
-    } else {
-      if (nil == newNode) {
-        newNode = startNode.paramNode;
-      }
-      startNode = newNode;
-      foundNode = newNode;
+    } else if (nil == newNode) {
+      newNode = startNode.paramNode;
     }
+    startNode = newNode;
+    foundNode = newNode;
   }];
   return foundNode;
 }
 
-- (BOOL) isParamNodeFromPathString:(NSString *) pathString {
-  NSError *error = NULL;
-  NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"{"
-                                                                         options:NSRegularExpressionCaseInsensitive
-                                                                           error:&error];
-  NSUInteger numberOfMatches = [regex numberOfMatchesInString:pathString
-                                                      options:0
-                                                        range:NSMakeRange(0, [pathString length])];
-  
-  BOOL isParamString = NO;
-  if (numberOfMatches > 0) {
-    isParamString = YES;
+- (CVPathNode *) findNodeFromPathString:(NSString *) pathString startingAt:(CVPathNode *) startNode {
+  CVPathNode *newNode = nil;
+  if ([pathString isEqualToString:@"/"]) {
+    // Root node is always initialized and exists
+    newNode = startNode;
+  } else {
+    newNode = [startNode.subNodes objectForKey:pathString];
   }
-  return isParamString;
+  return newNode;
 }
 
 - (CVPathNode *) findPathNodeFromPathComponents:(NSArray *) pathComponents {
@@ -197,8 +196,8 @@ static NSString * const kName = @"name";
   __block CVPathNode *startNode = self.rootNode;
   
   [pathComponents enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-    NSString *nodeName = (NSString *) obj;
-    CVPathNode *newNode = [startNode.subNodes objectForKey:nodeName];
+    NSString *pathString = (NSString *) obj;
+    CVPathNode *newNode = [self findNodeFromPathString:pathString startingAt:startNode];
     if (nil == newNode && nil == startNode.paramNode) {
       *stop = YES;
     } else {

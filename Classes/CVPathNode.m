@@ -49,4 +49,8 @@
   return response;
 }
 
+- (NSDictionary *) allResponses {
+  return _responses;
+}
+
 @end

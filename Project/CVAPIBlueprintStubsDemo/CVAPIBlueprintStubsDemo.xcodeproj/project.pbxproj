@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		183B652A1895F38E006DEF52 /* responses.json in Resources */ = {isa = PBXBuildFile; fileRef = 183B65291895F38E006DEF52 /* responses.json */; };
+		18C341201898447800947068 /* CVAPIBluePrintParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3411F1898447800947068 /* CVAPIBluePrintParserTest.m */; };
+		18C3412218988CBD00947068 /* CVUtilsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3412118988CBD00947068 /* CVUtilsTest.m */; };
 		18C6E279189643C600A63309 /* parameters.json in Resources */ = {isa = PBXBuildFile; fileRef = 18C6E278189643C600A63309 /* parameters.json */; };
 		18C6E27B1896494000A63309 /* simplest_api.json in Resources */ = {isa = PBXBuildFile; fileRef = 18C6E27A1896494000A63309 /* simplest_api.json */; };
 		BC46BD5AD95B4F649648B51B /* libPods-CVAPIBlueprintStubsDemoTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D75A470D5AE84A8E96E3C966 /* libPods-CVAPIBlueprintStubsDemoTests.a */; };
@@ -40,6 +42,8 @@
 /* Begin PBXFileReference section */
 		0323CF49C7C24532AD50B493 /* libPods-CVAPIBlueprintStubsDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CVAPIBlueprintStubsDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		183B65291895F38E006DEF52 /* responses.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = responses.json; sourceTree = "<group>"; };
+		18C3411F1898447800947068 /* CVAPIBluePrintParserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVAPIBluePrintParserTest.m; sourceTree = "<group>"; };
+		18C3412118988CBD00947068 /* CVUtilsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVUtilsTest.m; sourceTree = "<group>"; };
 		18C6E278189643C600A63309 /* parameters.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = parameters.json; sourceTree = "<group>"; };
 		18C6E27A1896494000A63309 /* simplest_api.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = simplest_api.json; sourceTree = "<group>"; };
 		2334CD78873148D68DB96D2A /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = ../Pods/Pods.xcconfig; sourceTree = "<group>"; };
@@ -155,6 +159,8 @@
 			children = (
 				BDB6CB011895B2CF001C2E2A /* CVAPIBlueprintStubsDemoTests.m */,
 				BDB6CAFC1895B2CF001C2E2A /* Supporting Files */,
+				18C3411F1898447800947068 /* CVAPIBluePrintParserTest.m */,
+				18C3412118988CBD00947068 /* CVUtilsTest.m */,
 			);
 			path = CVAPIBlueprintStubsDemoTests;
 			sourceTree = "<group>";
@@ -346,6 +352,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18C341201898447800947068 /* CVAPIBluePrintParserTest.m in Sources */,
+				18C3412218988CBD00947068 /* CVUtilsTest.m in Sources */,
 				BDB6CB021895B2CF001C2E2A /* CVAPIBlueprintStubsDemoTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

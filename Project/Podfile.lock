@@ -18,13 +18,11 @@ PODS:
   - AFNetworking/UIKit (2.1.0):
     - AFNetworking/NSURLConnection
   - CVAPIBlueprintStubs (0.1.0)
-  - ObjectiveSugar (0.9)
   - OHHTTPStubs (3.1.0)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.0)
   - CVAPIBlueprintStubs (from `../CVAPIBlueprintStubs.podspec`)
-  - ObjectiveSugar (~> 0.5)
   - OHHTTPStubs (~> 3.1)
 
 EXTERNAL SOURCES:
@@ -34,7 +32,6 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   AFNetworking: c7d7901a83f631414c7eda1737261f696101a5cd
   CVAPIBlueprintStubs: d94eb4d21b0e8359fab7abd3e7e5ab0741c9bd48
-  ObjectiveSugar: fc39ea0f07835a125922ca483748ec1ed8500ec0
   OHHTTPStubs: d67c42c0212f0883ddb8592375aa0dc00dc50a36
 
 COCOAPODS: 0.29.0

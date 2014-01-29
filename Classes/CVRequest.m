@@ -23,7 +23,7 @@
 }
 
 - (NSDictionary *) paramsFromURL:(NSURL *) url {
-  __block NSMutableDictionary *params = nil;
+  __block NSMutableDictionary *params = [NSMutableDictionary dictionary];
   
   NSArray *queryParams = [url.query componentsSeparatedByString:@"&"];
   [queryParams enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {

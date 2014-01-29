@@ -19,5 +19,6 @@
 - (void) removeNode:(CVPathNode *) node;
 - (CVResponse *) responseFromParamsAndHeadersForRequest:(NSURLRequest *) request;
 - (void) addResponse:(CVResponse *)response forRequest:(CVRequest *) request;
+- (NSDictionary *) allResponses;
 
 @end

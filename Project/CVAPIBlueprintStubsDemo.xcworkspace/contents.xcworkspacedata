@@ -48,5 +48,11 @@
       <FileRef
          location = "group:CVPathNode.m">
       </FileRef>
+      <FileRef
+         location = "group:CVUtils.h">
+      </FileRef>
+      <FileRef
+         location = "group:CVUtils.m">
+      </FileRef>
    </Group>
 </Workspace>
