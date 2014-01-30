@@ -40,7 +40,7 @@
 
 /* Begin PBXFileReference section */
 		183B65291895F38E006DEF52 /* responses.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = responses.json; sourceTree = "<group>"; };
-		1876728F1899E90500E5E9BB /* libPods-CVAPIBlueprintStubs.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "libPods-CVAPIBlueprintStubs.a"; path = "../Pods/build/Debug-iphoneos/libPods-CVAPIBlueprintStubs.a"; sourceTree = "<group>"; };
+		1876728F1899E90500E5E9BB /* libPods-CVAPIBlueprintStubs.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-CVAPIBlueprintStubs.a"; path = "../Pods/build/Debug-iphoneos/libPods-CVAPIBlueprintStubs.a"; sourceTree = "<group>"; };
 		18C3411F1898447800947068 /* CVAPIBluePrintParserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVAPIBluePrintParserTest.m; sourceTree = "<group>"; };
 		18C3412118988CBD00947068 /* CVUtilsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVUtilsTest.m; sourceTree = "<group>"; };
 		18C6E278189643C600A63309 /* parameters.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = parameters.json; sourceTree = "<group>"; };
@@ -382,6 +382,7 @@
 /* Begin XCBuildConfiguration section */
 		BDB6CB031895B2CF001C2E2A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EA062B03B930401286164FCC /* Pods.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
@@ -422,6 +423,7 @@
 		};
 		BDB6CB041895B2CF001C2E2A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EA062B03B930401286164FCC /* Pods.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";

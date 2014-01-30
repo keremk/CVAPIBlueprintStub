@@ -14,7 +14,6 @@
 @property(nonatomic, strong) NSString *method;
 @property(nonatomic, strong) NSDictionary *params;
 @property(nonatomic) BOOL useParamsValues;
-@property(nonatomic) BOOL useHeaderValues;
 
 - (id) initWithURLRequest:(NSURLRequest *) urlRequest useParamsValues:(BOOL) useParamsValues;
 - (NSUInteger) hash;

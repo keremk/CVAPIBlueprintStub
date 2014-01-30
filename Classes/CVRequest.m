@@ -25,6 +25,9 @@
     self.method = [urlRequest HTTPMethod];
     self.params = [self paramsFromURL:urlRequest.URL];
     self.headers = [urlRequest allHTTPHeaderFields];
+    if (nil == self.headers) {
+      self.headers = [NSDictionary dictionary];
+    }
   }
   return self;
 }
@@ -60,15 +63,16 @@
   if ([self.params count] > 0) {
     paramsString = [self dictionaryToString:self.params usingValues:self.useParamsValues];
   } else {
-    paramsString = @"";
+    paramsString = @"no-params";
   }
   NSString *headerString;
   if ([self.headers count] > 0) {
-    headerString = [self dictionaryToString:self.headers usingValues:self.useHeaderValues];
+    headerString = [self dictionaryToString:self.headers usingValues:NO];
   } else {
-    headerString = @"";
-  }  
-  return [self.method hash] ^ [headerString hash] ^ [paramsString hash];
+    headerString = @"no-headers";
+  }
+  NSString *hashString = [NSString stringWithFormat:@"%@-%@-%@", self.method, headerString, paramsString];
+  return [hashString hash];
 }
 
 - (BOOL)isEqual:(id)anObject {
@@ -88,7 +92,7 @@
 - (id)copyWithZone:(NSZone *)zone {
   CVRequest *objectCopy = [[CVRequest allocWithZone:zone] init];
   objectCopy.method = self.method;
-//  objectCopy.params = [self.params copy];
+  objectCopy.params = [self.params copy];
   objectCopy.headers = [self.headers copy];
   return objectCopy;
 }

@@ -25,7 +25,9 @@
     return [blueprintStub isRequestStubbed:request];
   } withStubResponse:^OHHTTPStubsResponse *(NSURLRequest *request) {
     CVResponse *stubResponse = [blueprintStub responseForRequest:request];
-    return [OHHTTPStubsResponse responseWithData:[stubResponse body] statusCode:(int)[stubResponse statusCode] headers:[stubResponse headers]];
+    return [OHHTTPStubsResponse responseWithData:[stubResponse body]
+                                      statusCode:(int)[stubResponse statusCode]
+                                         headers:[stubResponse headers]];
   }];
 }
 
@@ -34,19 +36,17 @@
   [super tearDown];
 }
 
-- (void)testExample {
-  XCTAssertTrue(YES);
-//    XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
-}
-
 - (void) testNSUrlConnectionBasedCall {
   NSURLRequest *urlRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://example.com/message"]];
   NSURLResponse *response = nil;
   NSError *error = nil;
   
   NSData *data = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:&response error:&error];
-  
   XCTAssertNotNil(data);
+  
+  NSString *body = [[NSString alloc] initWithData:data
+                                         encoding:NSUTF8StringEncoding];
+  XCTAssertTrue([body isEqualToString:@"Hello World!\n"]);
 }
 
 @end
