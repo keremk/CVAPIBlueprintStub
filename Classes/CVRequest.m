@@ -56,8 +56,18 @@
 }
 
 - (NSUInteger) hash {
-  NSString *paramsString = [self dictionaryToString:self.params usingValues:self.useParamsValues];
-  NSString *headerString = [self dictionaryToString:self.headers usingValues:self.useHeaderValues];
+  NSString *paramsString = nil;
+  if ([self.params count] > 0) {
+    paramsString = [self dictionaryToString:self.params usingValues:self.useParamsValues];
+  } else {
+    paramsString = @"";
+  }
+  NSString *headerString;
+  if ([self.headers count] > 0) {
+    headerString = [self dictionaryToString:self.headers usingValues:self.useHeaderValues];
+  } else {
+    headerString = @"";
+  }  
   return [self.method hash] ^ [headerString hash] ^ [paramsString hash];
 }
 
