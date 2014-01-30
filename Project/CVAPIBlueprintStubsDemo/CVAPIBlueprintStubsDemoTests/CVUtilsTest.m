@@ -29,16 +29,30 @@
   NSString *pathString = @"message";
   
   NSString *newPathString = [CVUtils stripQueryParamIfExistsFromPathString:pathString];
-  XCTAssertEqual(newPathString, @"message");
+  XCTAssertTrue([newPathString isEqualToString: @"message"]);
 }
 
 - (void) testPathStringForQueryParams {
   NSString *pathString = @"messages{?limit}";
-
+  
   NSString *newPathString = [CVUtils stripQueryParamIfExistsFromPathString:pathString];
-  XCTAssertEqual(newPathString, @"messages");
+  XCTAssertTrue([newPathString isEqualToString: @"messages"]);
 }
 
+- (void) testCheckingForRootNode {
+  NSString *pathString = @"/";
+  
+  NSString *newPathString = [CVUtils stripQueryParamIfExistsFromPathString:pathString];
+  XCTAssertTrue([newPathString isEqualToString: @"/"]);
+  XCTAssertEqualObjects(newPathString, @"/");
+}
+
+- (void) testCheckingForParamNode {
+  NSString *pathString = @"{12}";
+  
+  BOOL isParamNode = [CVUtils isParamNodeFromPathString:pathString];
+  XCTAssertTrue(isParamNode);
+}
 
 
 @end

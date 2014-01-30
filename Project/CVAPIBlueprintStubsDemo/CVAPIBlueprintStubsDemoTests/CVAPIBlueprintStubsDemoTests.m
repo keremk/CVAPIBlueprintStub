@@ -20,7 +20,7 @@
   [super setUp];
   // Put setup code here. This method is called before the invocation of each test method in the class.
 
-  CVAPIBlueprintStub *blueprintStub = [CVAPIBlueprintStub stubFromBlueprintAST:@"responses"];
+  CVAPIBlueprintStub *blueprintStub = [CVAPIBlueprintStub stubFromBlueprintAST:@"simplest_api"];
   [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
     return [blueprintStub isRequestStubbed:request];
   } withStubResponse:^OHHTTPStubsResponse *(NSURLRequest *request) {
@@ -37,6 +37,16 @@
 - (void)testExample {
   XCTAssertTrue(YES);
 //    XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+}
+
+- (void) testNSUrlConnectionBasedCall {
+  NSURLRequest *urlRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://example.com/message"]];
+  NSURLResponse *response = nil;
+  NSError *error = nil;
+  
+  NSData *data = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:&response error:&error];
+  
+  XCTAssertNotNil(data);
 }
 
 @end

@@ -16,10 +16,9 @@
 @property(nonatomic) BOOL useParamsValues;
 @property(nonatomic) BOOL useHeaderValues;
 
-- (id) initWithURLRequest:(NSURLRequest *) urlRequest;
+- (id) initWithURLRequest:(NSURLRequest *) urlRequest useParamsValues:(BOOL) useParamsValues;
 - (NSUInteger) hash;
 - (BOOL)isEqual:(id)anObject;
-
 - (id)copyWithZone:(NSZone *)zone;
 
 @end

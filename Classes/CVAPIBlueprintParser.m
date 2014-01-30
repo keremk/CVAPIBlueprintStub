@@ -65,8 +65,6 @@ static NSString * const kName = @"name";
                                                         inASTDictionary:resource
                                                              fromRawKey:kValue]];
       
-      CVPathNode *foundNode = [self findOrCreatePathNodeFromPathComponents:pathComponents];
-      
       NSArray *actions = [resource objectForKey:kActions];
       [actions enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         NSDictionary *action = (NSDictionary *) obj;
@@ -86,11 +84,13 @@ static NSString * const kName = @"name";
           NSArray *responses = [example objectForKey:kResponses];
           [responses enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
             NSDictionary *response = (NSDictionary *) obj;
+            BOOL headerAdded = NO;
             if (idx < [requests count]) {
               NSDictionary *request = [requests objectAtIndex:idx];
               [potentialHeaderStack addObject:[self extractRelevantValueFromKey:kHeaders
                                                                 inASTDictionary:request
                                                                      fromRawKey:kValue]];
+              headerAdded = YES;
             }
 
             CVRequest *cvRequest = [[CVRequest alloc] init];
@@ -100,14 +100,17 @@ static NSString * const kName = @"name";
             
             
             CVResponse *cvResponse = [[CVResponse alloc] init];
-            cvResponse.body = [response objectForKey:kBody];
+            cvResponse.body = [[response objectForKey:kBody] dataUsingEncoding:NSUTF8StringEncoding];
             cvResponse.statusCode = [[response objectForKey:kName] intValue];
             cvResponse.headers = [self extractRelevantValueFromKey:kHeaders inASTDictionary:response fromRawKey:kValue];
             
+            CVPathNode *foundNode = [self findOrCreatePathNodeFromPathComponents:pathComponents];
             [foundNode addResponse:cvResponse forRequest:cvRequest];
-          }]; // requests
-          [potentialParamsStack removeLastObject];
-          [potentialHeaderStack removeLastObject];
+            
+            if (headerAdded) {
+              [potentialHeaderStack removeLastObject];
+            }
+          }]; // responses
         }]; // examples
         [potentialParamsStack removeLastObject];
         [potentialHeaderStack removeLastObject];

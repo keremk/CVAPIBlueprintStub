@@ -8,11 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		183B652A1895F38E006DEF52 /* responses.json in Resources */ = {isa = PBXBuildFile; fileRef = 183B65291895F38E006DEF52 /* responses.json */; };
+		187672901899E90500E5E9BB /* libPods-CVAPIBlueprintStubs.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1876728F1899E90500E5E9BB /* libPods-CVAPIBlueprintStubs.a */; };
 		18C341201898447800947068 /* CVAPIBluePrintParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3411F1898447800947068 /* CVAPIBluePrintParserTest.m */; };
 		18C3412218988CBD00947068 /* CVUtilsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C3412118988CBD00947068 /* CVUtilsTest.m */; };
 		18C6E279189643C600A63309 /* parameters.json in Resources */ = {isa = PBXBuildFile; fileRef = 18C6E278189643C600A63309 /* parameters.json */; };
 		18C6E27B1896494000A63309 /* simplest_api.json in Resources */ = {isa = PBXBuildFile; fileRef = 18C6E27A1896494000A63309 /* simplest_api.json */; };
-		BC46BD5AD95B4F649648B51B /* libPods-CVAPIBlueprintStubsDemoTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D75A470D5AE84A8E96E3C966 /* libPods-CVAPIBlueprintStubsDemoTests.a */; };
+		220E762C962849C8932FBCB0 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 306711A37EA54DF0A84A0909 /* libPods.a */; };
 		BDB6CADD1895B2CF001C2E2A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDB6CADC1895B2CF001C2E2A /* Foundation.framework */; };
 		BDB6CADF1895B2CF001C2E2A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDB6CADE1895B2CF001C2E2A /* CoreGraphics.framework */; };
 		BDB6CAE11895B2CF001C2E2A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDB6CAE01895B2CF001C2E2A /* UIKit.framework */; };
@@ -25,8 +26,6 @@
 		BDB6CAF81895B2CF001C2E2A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDB6CAE01895B2CF001C2E2A /* UIKit.framework */; };
 		BDB6CB001895B2CF001C2E2A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BDB6CAFE1895B2CF001C2E2A /* InfoPlist.strings */; };
 		BDB6CB021895B2CF001C2E2A /* CVAPIBlueprintStubsDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BDB6CB011895B2CF001C2E2A /* CVAPIBlueprintStubsDemoTests.m */; };
-		CF0219D8CE874CC491EA11CE /* libPods-CVAPIBlueprintStubsDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0323CF49C7C24532AD50B493 /* libPods-CVAPIBlueprintStubsDemo.a */; };
-		FB773134E91F44B09888DB09 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ABFAE0E7F4FA4AE9B5EB7CB1 /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,15 +39,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0323CF49C7C24532AD50B493 /* libPods-CVAPIBlueprintStubsDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CVAPIBlueprintStubsDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		183B65291895F38E006DEF52 /* responses.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = responses.json; sourceTree = "<group>"; };
+		1876728F1899E90500E5E9BB /* libPods-CVAPIBlueprintStubs.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "libPods-CVAPIBlueprintStubs.a"; path = "../Pods/build/Debug-iphoneos/libPods-CVAPIBlueprintStubs.a"; sourceTree = "<group>"; };
 		18C3411F1898447800947068 /* CVAPIBluePrintParserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVAPIBluePrintParserTest.m; sourceTree = "<group>"; };
 		18C3412118988CBD00947068 /* CVUtilsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVUtilsTest.m; sourceTree = "<group>"; };
 		18C6E278189643C600A63309 /* parameters.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = parameters.json; sourceTree = "<group>"; };
 		18C6E27A1896494000A63309 /* simplest_api.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = simplest_api.json; sourceTree = "<group>"; };
-		2334CD78873148D68DB96D2A /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = ../Pods/Pods.xcconfig; sourceTree = "<group>"; };
-		36B8BC34CBAA4B298968F90A /* Pods-CVAPIBlueprintStubsDemo.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CVAPIBlueprintStubsDemo.xcconfig"; path = "../Pods/Pods-CVAPIBlueprintStubsDemo.xcconfig"; sourceTree = "<group>"; };
-		ABFAE0E7F4FA4AE9B5EB7CB1 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		306711A37EA54DF0A84A0909 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDB6CAD91895B2CF001C2E2A /* CVAPIBlueprintStubsDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CVAPIBlueprintStubsDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDB6CADC1895B2CF001C2E2A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		BDB6CADE1895B2CF001C2E2A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -65,8 +62,7 @@
 		BDB6CAFD1895B2CF001C2E2A /* CVAPIBlueprintStubsDemoTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CVAPIBlueprintStubsDemoTests-Info.plist"; sourceTree = "<group>"; };
 		BDB6CAFF1895B2CF001C2E2A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		BDB6CB011895B2CF001C2E2A /* CVAPIBlueprintStubsDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CVAPIBlueprintStubsDemoTests.m; sourceTree = "<group>"; };
-		D75A470D5AE84A8E96E3C966 /* libPods-CVAPIBlueprintStubsDemoTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CVAPIBlueprintStubsDemoTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		DF3EABB0982B415FAA7D5026 /* Pods-CVAPIBlueprintStubsDemoTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CVAPIBlueprintStubsDemoTests.xcconfig"; path = "../Pods/Pods-CVAPIBlueprintStubsDemoTests.xcconfig"; sourceTree = "<group>"; };
+		EA062B03B930401286164FCC /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = ../Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,8 +73,7 @@
 				BDB6CADF1895B2CF001C2E2A /* CoreGraphics.framework in Frameworks */,
 				BDB6CAE11895B2CF001C2E2A /* UIKit.framework in Frameworks */,
 				BDB6CADD1895B2CF001C2E2A /* Foundation.framework in Frameworks */,
-				FB773134E91F44B09888DB09 /* libPods.a in Frameworks */,
-				CF0219D8CE874CC491EA11CE /* libPods-CVAPIBlueprintStubsDemo.a in Frameworks */,
+				220E762C962849C8932FBCB0 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,10 +81,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				187672901899E90500E5E9BB /* libPods-CVAPIBlueprintStubs.a in Frameworks */,
 				BDB6CAF61895B2CF001C2E2A /* XCTest.framework in Frameworks */,
 				BDB6CAF81895B2CF001C2E2A /* UIKit.framework in Frameworks */,
 				BDB6CAF71895B2CF001C2E2A /* Foundation.framework in Frameworks */,
-				BC46BD5AD95B4F649648B51B /* libPods-CVAPIBlueprintStubsDemoTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -103,9 +98,7 @@
 				BDB6CAFB1895B2CF001C2E2A /* CVAPIBlueprintStubsDemoTests */,
 				BDB6CADB1895B2CF001C2E2A /* Frameworks */,
 				BDB6CADA1895B2CF001C2E2A /* Products */,
-				2334CD78873148D68DB96D2A /* Pods.xcconfig */,
-				36B8BC34CBAA4B298968F90A /* Pods-CVAPIBlueprintStubsDemo.xcconfig */,
-				DF3EABB0982B415FAA7D5026 /* Pods-CVAPIBlueprintStubsDemoTests.xcconfig */,
+				EA062B03B930401286164FCC /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -121,13 +114,12 @@
 		BDB6CADB1895B2CF001C2E2A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1876728F1899E90500E5E9BB /* libPods-CVAPIBlueprintStubs.a */,
 				BDB6CADC1895B2CF001C2E2A /* Foundation.framework */,
 				BDB6CADE1895B2CF001C2E2A /* CoreGraphics.framework */,
 				BDB6CAE01895B2CF001C2E2A /* UIKit.framework */,
 				BDB6CAF51895B2CF001C2E2A /* XCTest.framework */,
-				ABFAE0E7F4FA4AE9B5EB7CB1 /* libPods.a */,
-				0323CF49C7C24532AD50B493 /* libPods-CVAPIBlueprintStubsDemo.a */,
-				D75A470D5AE84A8E96E3C966 /* libPods-CVAPIBlueprintStubsDemoTests.a */,
+				306711A37EA54DF0A84A0909 /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -288,7 +280,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../Pods/Pods-CVAPIBlueprintStubsDemoTests-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/../Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		2271317D04AD4E1FB80C3450 /* Copy Pods Resources */ = {
@@ -303,7 +295,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../Pods/Pods-CVAPIBlueprintStubsDemo-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/../Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		566221D8855C4AB4989B0C9E /* Check Pods Manifest.lock */ = {
@@ -423,6 +415,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
+				PODS_ROOT = "${SRCROOT}/../Pods";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -455,6 +448,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				PODS_ROOT = "${SRCROOT}/../Pods";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -462,7 +456,7 @@
 		};
 		BDB6CB061895B2CF001C2E2A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 36B8BC34CBAA4B298968F90A /* Pods-CVAPIBlueprintStubsDemo.xcconfig */;
+			baseConfigurationReference = EA062B03B930401286164FCC /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -476,7 +470,7 @@
 		};
 		BDB6CB071895B2CF001C2E2A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 36B8BC34CBAA4B298968F90A /* Pods-CVAPIBlueprintStubsDemo.xcconfig */;
+			baseConfigurationReference = EA062B03B930401286164FCC /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -490,7 +484,7 @@
 		};
 		BDB6CB091895B2CF001C2E2A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DF3EABB0982B415FAA7D5026 /* Pods-CVAPIBlueprintStubsDemoTests.xcconfig */;
+			baseConfigurationReference = EA062B03B930401286164FCC /* Pods.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/CVAPIBlueprintStubsDemo.app/CVAPIBlueprintStubsDemo";
@@ -514,7 +508,7 @@
 		};
 		BDB6CB0A1895B2CF001C2E2A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DF3EABB0982B415FAA7D5026 /* Pods-CVAPIBlueprintStubsDemoTests.xcconfig */;
+			baseConfigurationReference = EA062B03B930401286164FCC /* Pods.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/CVAPIBlueprintStubsDemo.app/CVAPIBlueprintStubsDemo";

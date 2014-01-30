@@ -10,14 +10,21 @@
 
 @implementation CVRequest
 
-- (id) initWithURLRequest:(NSURLRequest *) urlRequest {
+- (id) init {
   self = [super init];
   if (self) {
-    _useHeaderValues = YES;
-    _useParamsValues = YES;
-    _method = [urlRequest HTTPMethod];
-    _params = [self paramsFromURL:urlRequest.URL];
-    _headers = [urlRequest allHTTPHeaderFields];
+    self.useParamsValues = NO;
+  }
+  return self;
+}
+
+- (id) initWithURLRequest:(NSURLRequest *) urlRequest useParamsValues:(BOOL) useParamsValues{
+  self = [super init];
+  if (self) {
+    self.useParamsValues = useParamsValues;
+    self.method = [urlRequest HTTPMethod];
+    self.params = [self paramsFromURL:urlRequest.URL];
+    self.headers = [urlRequest allHTTPHeaderFields];
   }
   return self;
 }
@@ -35,6 +42,17 @@
   }];
   
   return params;
+}
+
+- (void) setParams:(NSDictionary *)params {
+  if (_useParamsValues) {
+    _params = params;
+  } else {
+    _params = [NSMutableDictionary dictionary];
+   [params enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+     [_params setValue:@"" forKey:key];
+   }];
+  }
 }
 
 - (NSUInteger) hash {
@@ -60,7 +78,7 @@
 - (id)copyWithZone:(NSZone *)zone {
   CVRequest *objectCopy = [[CVRequest allocWithZone:zone] init];
   objectCopy.method = self.method;
-  objectCopy.params = [self.params copy];
+//  objectCopy.params = [self.params copy];
   objectCopy.headers = [self.headers copy];
   return objectCopy;
 }

@@ -12,16 +12,18 @@
 
 + (NSString *) stripQueryParamIfExistsFromPathString:(NSString *) pathString {
   NSError *error = NULL;
-  NSRegularExpression *queryParamRegex = [NSRegularExpression regularExpressionWithPattern:@"\\w*"
+  NSRegularExpression *queryParamRegex = [NSRegularExpression regularExpressionWithPattern:@"\\w+\\{\\?\\w*\\}"
                                                                                    options:NSRegularExpressionCaseInsensitive
                                                                                      error:&error];
   
-  NSArray *matches = [queryParamRegex matchesInString:pathString options:0 range:NSMakeRange(0, [pathString length])];
+  NSUInteger numberOfMatches = [queryParamRegex numberOfMatchesInString:pathString
+                                                               options:0
+                                                                 range:NSMakeRange(0, [pathString length])];
   
-  if ([matches count] > 0) {
-    NSTextCheckingResult *match = [matches objectAtIndex:0];
-    NSRange matchRange = [match range];
-    NSString *newPathString = [pathString substringWithRange:matchRange];
+  if (1 == numberOfMatches) {
+    NSRange endRange = [pathString rangeOfString:@"{"];
+    NSRange firstPartRange = NSMakeRange(0, endRange.location);
+    NSString *newPathString = [pathString substringWithRange:firstPartRange];
     return newPathString;
   } else {
     return pathString;

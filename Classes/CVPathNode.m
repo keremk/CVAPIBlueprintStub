@@ -43,7 +43,7 @@
 }
 
 - (CVResponse *) responseFromParamsAndHeadersForRequest:(NSURLRequest *) request {
-  CVRequest *cvRequest = [[CVRequest alloc] initWithURLRequest:request];
+  CVRequest *cvRequest = [[CVRequest alloc] initWithURLRequest:request useParamsValues:NO];
   CVResponse *response = [_responses objectForKey:cvRequest];
   
   return response;

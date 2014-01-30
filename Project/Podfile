@@ -1,12 +1,8 @@
 platform :ios, '7.0'
 
+pod 'AFNetworking', '~> 2.0'
+pod 'OHHTTPStubs', '~> 3.1'
+pod 'CVAPIBlueprintStubs', :path => '../CVAPIBlueprintStubs.podspec'
+
 xcodeproj 'CVAPIBlueprintStubsDemo/CVAPIBlueprintStubsDemo'
 
-target "CVAPIBlueprintStubsDemo" do
-  pod 'AFNetworking', '~> 2.0'  
-end
-
-target "CVAPIBlueprintStubsDemoTests" do
-  pod 'OHHTTPStubs', '~> 3.1'
-  pod 'CVAPIBlueprintStubs', :path => '../CVAPIBlueprintStubs.podspec'
-end

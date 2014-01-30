@@ -16,7 +16,7 @@
 @implementation CVAPIBluePrintParserTest
 
 - (NSDictionary *) loadFromFile:(NSString *) filename {
-  NSString *filePath = [[NSBundle bundleForClass: [CVAPIBlueprintParser class]] pathForResource:filename ofType:@"json"];
+  NSString *filePath = [[NSBundle bundleForClass: [CVAPIBluePrintParserTest class]] pathForResource:filename ofType:@"json"];
   NSError *error;
   NSData *jsonASTData = [NSData dataWithContentsOfFile:filePath options:NSDataReadingMappedIfSafe error:&error];
   NSDictionary *blueprintAST = [NSJSONSerialization JSONObjectWithData:jsonASTData
@@ -65,11 +65,10 @@
   XCTAssertNotNil(subNode);
   CVPathNode *paramNode = subNode.paramNode;
   XCTAssertNotNil(paramNode);
-  XCTAssertEqual(paramNode.pathString, @"{id}");
+  XCTAssertEqualObjects(paramNode.pathString, @"{id}");
   NSDictionary *responses = [paramNode allResponses];
   NSInteger count = [responses count];
   XCTAssertEqual(count, 3);
-  
 }
 
 - (void) testFindingResponseForAGivenURLRequest {
@@ -78,7 +77,16 @@
   NSURL *url = [NSURL URLWithString:@"http://example.com/message"];
   NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:url];
   [urlRequest setHTTPMethod:@"GET"];
-  
+  CVResponse *response = [parser responseForRequest:urlRequest];
+  XCTAssertNotNil(response);
+}
+
+- (void) testFindingResponseForAGivenURLRequestWithParameters {
+  NSDictionary *blueprintAST = [self loadFromFile:@"parameters"];
+  CVAPIBlueprintParser *parser = [[CVAPIBlueprintParser alloc] initWithAST:blueprintAST];
+  NSURL *url = [NSURL URLWithString:@"http://example.com/messages?limit=10"];
+  NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:url];
+  [urlRequest setHTTPMethod:@"GET"];
   CVResponse *response = [parser responseForRequest:urlRequest];
   XCTAssertNotNil(response);
 }

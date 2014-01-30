@@ -5,7 +5,7 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>2C1D9C1B-BA03-4A69-B7C5-D01A387C459A</string>
+	<string>71A1318C-1D2F-455D-83FC-C627F95F24BA</string>
 	<key>IDESourceControlProjectName</key>
 	<string>CVAPIBlueprintStubsDemo</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
@@ -14,11 +14,11 @@
 		<string>https://github.com/keremk/CVAPIBlueprintStub.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>Project/CVAPIBlueprintStubsDemo.xcworkspace</string>
+	<string>Project/CVAPIBlueprintStubsDemo/CVAPIBlueprintStubsDemo.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>1B74E641-E9B9-4BC6-8842-6CCF466CDFFD</key>
-		<string>../..</string>
+		<string>../../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/keremk/CVAPIBlueprintStub.git</string>
